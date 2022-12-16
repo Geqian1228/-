@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main(void){
+    int m[26] = {0};
+    char word[20];
+    int i,n,x,sum;
+
+    printf("Enter first word: ");
+
+    for(i = 0;((word[i] = getchar()) != '\n');i++){
+        m[word[i] - 'a']++;
+    }
+
+    printf("Enter second word: ");
+
+    for(n = 0;((word[n] = getchar()) != '\n');n++){
+        m[word[n] - 'a']--;
+    }
+
+    for(sum = 0,x = 0;x < 26;x++){
+        sum = sum + m[x];
+    }
+    if(sum == 0){
+        printf("The words are anagrams: ");
+    } else {
+        printf("The words are not anagrams: ");
+    }
+    return 0;
+}
