@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_LEN 400
+
+int main() {
+	char sentence[MAX_LEN] = { 0 }, ch, stop_char;
+	int index = 0;
+
+	printf("Enter a sentence: ");
+	while ((ch = getchar()) != '\n' && index < MAX_LEN)
+	{
+		if (ch == ' ' && sentence[0] == 0) {
+			continue;
+		}
+
+		if (ch == '.' || ch == '?' || ch == '!')
+		{
+			stop_char = ch;
+			break;
+		}
+		
+		sentence[index++] = ch;
+	}
+	
+	printf("Reversal of sentence: ");
+	for (int i = MAX_LEN - 1; i >= 0; i--)
+	{
+		ch = sentence[i];
+		if (ch == ' ' || i == 0) {
+			index = i == 0 ? 0 : i + 1;
+			while (sentence[index] && sentence[index] != ' ') {
+				putchar(sentence[index++]);
+			}
+
+			if (i && index != (i == 0 ? 0 : i + 1)) putchar(' ');
+		}
+	}
+	printf("%c\n", stop_char);
+
+	return 0;
+}
